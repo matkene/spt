@@ -300,4 +300,7 @@
     // Include course AJAX
     include_course_ajax($course, $modnamesused);
 
+    $PAGE->requires->js_init_call('digital_purse_currentCourseToEnroll', array(array('user'=>$USER , 'currentCourse'=>$course)));
+    $PAGE->requires->js_init_call('digital_purse_checkCourseSubscription', array(array('user'=>$USER , 'currentCourse'=>$course)));
+
     echo $OUTPUT->footer();

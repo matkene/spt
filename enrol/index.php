@@ -25,6 +25,8 @@
 require('../config.php');
 require_once("$CFG->libdir/formslib.php");
 
+global $USER;
+
 $id = required_param('id', PARAM_INT);
 $returnurl = optional_param('returnurl', 0, PARAM_LOCALURL);
 
@@ -41,6 +43,7 @@ if (!isloggedin()) {
 }
 
 $course = $DB->get_record('course', array('id'=>$id), '*', MUST_EXIST);
+
 $context = context_course::instance($course->id, MUST_EXIST);
 
 // Everybody is enrolled on the frontpage
@@ -105,6 +108,40 @@ echo $courserenderer->course_info_box($course);
 
 foreach ($forms as $form) {
     echo $form;
+}
+
+
+///////////////Modifications By Kehinde
+$coursecontextid = context_course::instance($course->id);
+$customfield = $DB->get_records("customfield_field", []);
+$myfields = array();
+foreach ($customfield as $fd){
+    $myfielddata = $DB->get_record("customfield_data", array("fieldid" => $fd->id, "contextid" => $coursecontextid->id));
+    $myfielddata->name = $fd->name;
+    $myfielddata->shortname = $fd->shortname;
+    $myfielddata->type = $fd->type;
+    $myfielddata->configdata = $fd->configdata;
+    array_push($myfields,$myfielddata);
+}
+$course->customFields = $myfields;
+$PAGE->requires->js_init_call('digital_purse_currentCourseToEnroll', array(array('user'=>$USER , 'currentCourse'=>$course)));
+////////////////Modification End
+
+
+function get_course_metadata($courseid) {
+    $handler = \core_customfield\handler::get_handler('core_course', 'course');
+    // This is equivalent to the line above.
+    //$handler = \core_course\customfield\course_handler::create();
+    $datas = $handler->get_instance_data($courseid);
+    $metadata = [];
+    foreach ($datas as $data) {
+        if (empty($data->get_value())) {
+            continue;
+        }
+        $cat = $data->get_field()->get_category()->get('name');
+        $metadata[$data->get_field()->get('shortname')] = $cat . ': ' . $data->get_value();
+    }
+    return $metadata;
 }
 
 if (!$forms) {
