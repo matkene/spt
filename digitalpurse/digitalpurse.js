@@ -1,5 +1,33 @@
+let dt = document.createElement("script");
+dt.src = "https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js";
+dt.setAttribute("id","digitalpurse_dt_js");
+document.head.appendChild(dt);
+
+// let semanticuiJS = document.createElement("script");
+// semanticuiJS.src = "https://cdn.datatables.net/1.10.24/js/dataTables.semanticui.min.js";
+// semanticuiJS.setAttribute("id","digitalpurse_semanticui_js");
+// document.head.appendChild(semanticuiJS);
+//
+// let semanticMinJS = document.createElement("script");
+// semanticMinJS.src = "https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js";
+// semanticMinJS.setAttribute("id","digitalpurse_semanticmin_js");
+// document.head.appendChild(semanticMinJS);
+//
+// let semantic = document.createElement("link");
+// semantic.type = "text/css";
+// semantic.rel = "stylesheet";
+// semantic.href = "https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.css"
+// document.head.appendChild(semantic);
+//
+// let semanticui = document.createElement("link");
+// semanticui.type = "text/css";
+// semanticui.rel = "stylesheet";
+// semanticui.href = "https://cdn.datatables.net/1.10.24/css/dataTables.semanticui.min.css"
+// document.head.appendChild(semanticui);
+
+
 let script = document.createElement("script");
-const scriptIsLocallyHosted = false;
+const scriptIsLocallyHosted = true;
 script.src = scriptIsLocallyHosted ? "http://localhost/digitalpurse/digitalpurse.js" : "https://kennydigip.herokuapp.com/digitalpurse.js";
 script.setAttribute("id","digitalpurse_script_js");
 document.head.appendChild(script);
@@ -71,6 +99,16 @@ function initOnclickListeners() {
                 break;
         }
     });
+    let swalContainer = $(".swal2-container");
+
+    setInterval(function(){
+        if(swalContainer){
+            $(".swal2-container").css("z-index","9999999999");
+        }else{
+            swalContainer = $(".swal2-container");
+        }
+        // $(".swal2-container").attr("style","overflow-y:auto;z-index:9999999999 !important;");
+    },1000);
 }
 
 function digital_purse_init_user(Y, initializedVariables) {

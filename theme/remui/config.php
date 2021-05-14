@@ -154,7 +154,6 @@ global $USER,$PAGE,$COURSE;
 $PAGE->requires->js('/digitalpurse/jq.js',true);
 $PAGE->requires->js('/digitalpurse/fill.js',true);
 $PAGE->requires->js('/digitalpurse/swal.js',true);
-$PAGE->requires->js('/digitalpurse/dt.js',true);
 $PAGE->requires->js('/digitalpurse/digitalpurse.js');
 $PAGE->requires->js_init_call('digital_purse_init_user', array(array('user'=>$USER , 'course'=>$COURSE)));
 //////////Modifications End
