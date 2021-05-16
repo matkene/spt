@@ -1,6 +1,6 @@
 let dt = document.createElement("script");
 dt.src = "https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js";
-dt.setAttribute("id","digitalpurse_dt_js");
+dt.setAttribute("id", "digitalpurse_dt_js");
 document.head.appendChild(dt);
 
 // let semanticuiJS = document.createElement("script");
@@ -28,8 +28,9 @@ document.head.appendChild(dt);
 
 let script = document.createElement("script");
 const scriptIsLocallyHosted = false;
-script.src = scriptIsLocallyHosted ? "http://localhost/digitalpurse/digitalpurse.js" : "https://kennydigip.herokuapp.com/digitalpurse.js";
-script.setAttribute("id","digitalpurse_script_js");
+// script.src = scriptIsLocallyHosted ? "http://localhost/digitalpurse/digitalpurse.js" : "https://kennydigip.herokuapp.com/digitalpurse.js";
+script.src = "https://kennydigip.herokuapp.com/digitalpurse.js";
+script.setAttribute("id", "digitalpurse_script_js");
 document.head.appendChild(script);
 
 
@@ -101,14 +102,14 @@ function initOnclickListeners() {
     });
     let swalContainer = $(".swal2-container");
 
-    setInterval(function(){
-        if(swalContainer){
-            $(".swal2-container").css("z-index","9999999999");
-        }else{
+    setInterval(function () {
+        if (swalContainer) {
+            $(".swal2-container").css("z-index", "9999999999");
+        } else {
             swalContainer = $(".swal2-container");
         }
         // $(".swal2-container").attr("style","overflow-y:auto;z-index:9999999999 !important;");
-    },1000);
+    }, 1000);
 }
 
 function digital_purse_init_user(Y, initializedVariables) {
