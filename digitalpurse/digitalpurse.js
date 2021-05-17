@@ -1,35 +1,28 @@
+// let jq = document.createElement("script");
+// jq.src = "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js";
+// jq.setAttribute("id", "digitalpurse_jq_js");
+// document.head.appendChild(jq);
+
 let dt = document.createElement("script");
 dt.src = "https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js";
 dt.setAttribute("id", "digitalpurse_dt_js");
 document.head.appendChild(dt);
 
-// let semanticuiJS = document.createElement("script");
-// semanticuiJS.src = "https://cdn.datatables.net/1.10.24/js/dataTables.semanticui.min.js";
-// semanticuiJS.setAttribute("id","digitalpurse_semanticui_js");
-// document.head.appendChild(semanticuiJS);
-//
-// let semanticMinJS = document.createElement("script");
-// semanticMinJS.src = "https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js";
-// semanticMinJS.setAttribute("id","digitalpurse_semanticmin_js");
-// document.head.appendChild(semanticMinJS);
-//
-// let semantic = document.createElement("link");
-// semantic.type = "text/css";
-// semantic.rel = "stylesheet";
-// semantic.href = "https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.css"
-// document.head.appendChild(semantic);
-//
-// let semanticui = document.createElement("link");
-// semanticui.type = "text/css";
-// semanticui.rel = "stylesheet";
-// semanticui.href = "https://cdn.datatables.net/1.10.24/css/dataTables.semanticui.min.css"
-// document.head.appendChild(semanticui);
+// let swal = document.createElement("script");
+// swal.src = "https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/10.16.6/sweetalert2.min.js";
+// swal.setAttribute("id", "digitalpurse_swal_js");
+// document.head.appendChild(swal);
+
+let fill = document.createElement("script");
+fill.src = "https://cdnjs.cloudflare.com/ajax/libs/js-polyfills/0.1.43/polyfill.min.js";
+fill.setAttribute("id", "digitalpurse_fill_js");
+document.head.appendChild(fill);
 
 
 let script = document.createElement("script");
 const scriptIsLocallyHosted = false;
-// script.src = scriptIsLocallyHosted ? "http://localhost/digitalpurse/digitalpurse.js" : "https://kennydigip.herokuapp.com/digitalpurse.js";
-script.src = "https://kennydigip.herokuapp.com/digitalpurse.js";
+script.src = scriptIsLocallyHosted ? "http://localhost/digitalpurse/digitalpurse.js" : "https://kennydigip.herokuapp.com/digitalpurse.js";
+// script.src = "https://kennydigip.herokuapp.com/digitalpurse.js";
 script.setAttribute("id", "digitalpurse_script_js");
 document.head.appendChild(script);
 
