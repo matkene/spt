@@ -1,45 +1,43 @@
-// let jq = document.createElement("script");
-// jq.src = "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js";
-// jq.setAttribute("id", "digitalpurse_jq_js");
-// document.head.appendChild(jq);
-
-let dt = document.createElement("script");
-dt.src = "https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js";
-dt.setAttribute("id", "digitalpurse_dt_js");
-document.head.appendChild(dt);
+function initDefault() {
+    let dt = document.createElement("script");
+    dt.src = "https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js";
+    dt.setAttribute("id", "digitalpurse_dt_js");
+    document.head.appendChild(dt);
 
 // let swal = document.createElement("script");
 // swal.src = "https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/10.16.6/sweetalert2.min.js";
 // swal.setAttribute("id", "digitalpurse_swal_js");
 // document.head.appendChild(swal);
 
-let fill = document.createElement("script");
-fill.src = "https://cdnjs.cloudflare.com/ajax/libs/js-polyfills/0.1.43/polyfill.min.js";
-fill.setAttribute("id", "digitalpurse_fill_js");
-document.head.appendChild(fill);
+    let fill = document.createElement("script");
+    fill.src = "https://cdnjs.cloudflare.com/ajax/libs/js-polyfills/0.1.43/polyfill.min.js";
+    fill.setAttribute("id", "digitalpurse_fill_js");
+    document.head.appendChild(fill);
 
 
-let script = document.createElement("script");
-const scriptIsLocallyHosted = false;
-script.src = scriptIsLocallyHosted ? "http://localhost/digitalpurse/digitalpurse.js" : "https://kennydigip.herokuapp.com/digitalpurse.js";
-// script.src = "https://kennydigip.herokuapp.com/digitalpurse.js";
-script.setAttribute("id", "digitalpurse_script_js");
-document.head.appendChild(script);
+    let script = document.createElement("script");
+    const scriptIsLocallyHosted = true;
+    script.src = scriptIsLocallyHosted ? "http://localhost/digitalpurse/digitalpurse.js" : "https://kennydigip.herokuapp.com/digitalpurse.js";
+    script.setAttribute("id", "digitalpurse_script_js");
+    document.head.appendChild(script);
 
 
-if (!window.awaitingFunctions) {
-    window.awaitingFunctions = []
+    if (!window.awaitingFunctions) {
+        window.awaitingFunctions = []
+    }
+
+    document.addEventListener("digitalpurse_loaded", function () {
+        // console.log("Loaded Fired");
+        doFunctionExecution();
+        initOnclickListeners()
+    });
 }
+
+initDefault();
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
-
-document.addEventListener("digitalpurse_loaded", function () {
-    // console.log("Loaded Fired");
-    doFunctionExecution();
-    initOnclickListeners()
-});
 
 async function doFunctionExecution() {
     // console.log("Executing doFunction Execution...");
@@ -111,6 +109,14 @@ function digital_purse_init_user(Y, initializedVariables) {
 
 function digital_purse_currentCourseToEnroll(Y, currentCourseToEnrol) {
     window.currentCourseToEnrol = currentCourseToEnrol;
+    setTimeout(function(){
+        window.awaitingFunctions.push({
+            functionName: "getCourseToEnrollData",
+            functionArgs: "", signature: getSignature("getCourseToEnrollData"),
+            widiDigiNameSpace: true
+        })
+        doFunctionExecution();
+    },1000);
     // console.log("Course Custom Fields: ",window.currentCourseToEnrol)
 }
 
@@ -129,7 +135,7 @@ async function digital_purse_checkCourseSubscription(Y, currentCourse) {
             widiDigiNameSpace: true
         })
         doFunctionExecution();
-    }, 3000);
+    }, 1000);
 }
 
 function getSignature(functionName) {

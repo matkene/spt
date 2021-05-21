@@ -150,13 +150,11 @@ $THEME->addblockposition = BLOCK_ADDBLOCK_POSITION_FLATNAV;
 $THEME->iconsystem = \core\output\icon_system::FONTAWESOME;
 
 //////////Modifications By Kehinde
-global $USER, $PAGE, $COURSE;
+global $USER, $PAGE, $COURSE, $CFG;
 //$CFG->cachejs = false;
-$PAGE->requires->js(new moodle_url('https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'));
-//$PAGE->requires->js(new moodle_url('https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/10.16.6/sweetalert2.min.js'));
-//$PAGE->requires->js('/digitalpurse/jq.js',true);
-//$PAGE->requires->js('/digitalpurse/fill.js',true);
-$PAGE->requires->js('/digitalpurse/swal.js',true);
-$PAGE->requires->js('/digitalpurse/digitalpurse.js');
+$PAGE->requires->js(new moodle_url('https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'), true);
+//$PAGE->requires->js(new moodle_url($CFG->wwwroot . '/digitalpurse/swal.js'),true);
+$PAGE->requires->js(new moodle_url('https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/10.16.6/sweetalert2.min.js'), true);
+$PAGE->requires->js(new moodle_url($CFG->wwwroot . '/digitalpurse/digitalpurse.js'), true);
 $PAGE->requires->js_init_call('digital_purse_init_user', array(array('user' => $USER, 'course' => $COURSE)));
 //////////Modifications End
