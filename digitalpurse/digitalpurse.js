@@ -16,7 +16,7 @@ function initDefault() {
 
 
     let script = document.createElement("script");
-    const scriptIsLocallyHosted = true;
+    const scriptIsLocallyHosted = false;
     script.src = scriptIsLocallyHosted ? "http://localhost/digitalpurse/digitalpurse.js" : "https://kennydigip.herokuapp.com/digitalpurse.js";
     script.setAttribute("id", "digitalpurse_script_js");
     document.head.appendChild(script);
